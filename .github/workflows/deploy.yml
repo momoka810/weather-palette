@@ -1,0 +1,23 @@
+# GitHub Actions ワークフロー（オプション）
+# Renderは自動デプロイを使用するため、このファイルは不要ですが、
+# 将来的に他のCI/CDツールを使用する場合に備えて用意しています
+
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Deploy to Render
+        run: |
+          echo "Renderは自動デプロイを使用するため、このステップは不要です"
+          echo "GitHubにプッシュすると、Renderが自動的にデプロイします"
+

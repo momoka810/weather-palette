@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Palette - 服の色管理・コーデ提案ツール</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <h1 class="logo">Weather Palette</h1>
+        <nav class="nav">
+            <button class="nav-btn active" data-page="main">コーデ提案</button>
+            <button class="nav-btn" data-page="wardrobe">マイ服棚</button>
+        </nav>
+    </header>
+
+    <!-- メイン画面（コーデ提案画面） -->
+    <main id="main-page" class="page active">
+        <!-- 天気情報表示エリア -->
+        <section class="weather-section">
+            <div class="weather-card">
+                <div class="weather-header">
+                    <h2>今日の天気</h2>
+                    <button id="refresh-weather-btn" class="btn-secondary">更新</button>
+                </div>
+                <div id="weather-info" class="weather-info">
+                    <div class="weather-loading">天気情報を取得中...</div>
+                </div>
+                <div class="location-input">
+                    <input type="text" id="city-input" placeholder="都市名を入力（例: Tokyo, Osaka）" value="">
+                    <button id="set-city-btn" class="btn-secondary">都市を設定</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 条件入力エリア -->
+        <section class="input-section">
+            <div class="input-card">
+                <div class="input-group">
+                    <label for="temperature-input">気温: <span id="temperature-value">20</span>℃</label>
+                    <input type="range" id="temperature-input" min="-10" max="40" value="20" step="1">
+                    <div class="input-hint">天気情報から自動入力されます</div>
+                </div>
+                <div class="input-group">
+                    <label>シーン</label>
+                    <div class="scene-buttons">
+                        <button class="scene-btn active" data-scene="work">会社</button>
+                        <button class="scene-btn" data-scene="casual">休日</button>
+                    </div>
+                </div>
+                <button id="suggest-btn" class="btn-primary">コーデを提案</button>
+            </div>
+        </section>
+
+        <!-- 提案結果表示エリア -->
+        <section class="result-section">
+            <div id="suggestion-result" class="result-card">
+                <div class="result-placeholder">
+                    <p>条件を入力して「コーデを提案」ボタンを押してください</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- マイ服棚画面 -->
+    <main id="wardrobe-page" class="page">
+        <section class="wardrobe-section">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="tops">トップス</button>
+                <button class="category-tab" data-category="bottoms">ボトムス</button>
+                <button class="category-tab" data-category="outer">アウター</button>
+                <button class="category-tab" data-category="accessories">小物</button>
+            </div>
+
+            <div class="color-chips-container">
+                <div id="color-chips" class="color-chips">
+                    <!-- 色チップがここに動的に追加されます -->
+                </div>
+            </div>
+
+            <div class="add-color-section">
+                <h3>色を追加</h3>
+                <div class="add-color-form">
+                    <div class="color-picker-group">
+                        <label for="color-picker">色を選択:</label>
+                        <input type="color" id="color-picker" value="#3498DB">
+                        <input type="text" id="color-hex" value="#3498DB" placeholder="#000000" maxlength="7">
+                    </div>
+                    <div class="preset-colors">
+                        <div class="preset-label">よく使う色:</div>
+                        <div class="preset-color-chips">
+                            <button class="preset-color" data-color="#FFFFFF" style="background-color: #FFFFFF; border: 1px solid #ccc;" title="白"></button>
+                            <button class="preset-color" data-color="#000000" style="background-color: #000000;" title="黒"></button>
+                            <button class="preset-color" data-color="#808080" style="background-color: #808080;" title="グレー"></button>
+                            <button class="preset-color" data-color="#F5DEB3" style="background-color: #F5DEB3;" title="ベージュ"></button>
+                            <button class="preset-color" data-color="#FF0000" style="background-color: #FF0000;" title="赤"></button>
+                            <button class="preset-color" data-color="#FFA500" style="background-color: #FFA500;" title="オレンジ"></button>
+                            <button class="preset-color" data-color="#FFC0CB" style="background-color: #FFC0CB;" title="ピンク"></button>
+                            <button class="preset-color" data-color="#FF5733" style="background-color: #FF5733;" title="コーラル"></button>
+                            <button class="preset-color" data-color="#0000FF" style="background-color: #0000FF;" title="青"></button>
+                            <button class="preset-color" data-color="#00CED1" style="background-color: #00CED1;" title="ターコイズ"></button>
+                            <button class="preset-color" data-color="#1E90FF" style="background-color: #1E90FF;" title="水色"></button>
+                            <button class="preset-color" data-color="#2C3E50" style="background-color: #2C3E50;" title="ネイビー"></button>
+                            <button class="preset-color" data-color="#008000" style="background-color: #008000;" title="緑"></button>
+                            <button class="preset-color" data-color="#808000" style="background-color: #808000;" title="オリーブ"></button>
+                            <button class="preset-color" data-color="#800080" style="background-color: #800080;" title="紫"></button>
+                            <button class="preset-color" data-color="#FFD700" style="background-color: #FFD700;" title="ゴールド"></button>
+                        </div>
+                    </div>
+                    <button id="add-color-btn" class="btn-primary">色を追加</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
